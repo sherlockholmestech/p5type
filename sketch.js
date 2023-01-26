@@ -48,6 +48,9 @@ function getRandomWords() {
     .then(response => response.json())
     .then(data => {
       inputtext = data.ten;
+      typed = '';
+      wrongchars = 0;
+      index = 0;
     })
     .catch((error) => console.error('Error:', error));
 }
