@@ -9,6 +9,9 @@ function preload() {
 }
 
 function setup() {
+  button = createButton('click me');
+  button.position(0, 0);
+  button.mousePressed(getRandomWords);
   createCanvas(windowWidth, windowHeight);
 }
 
@@ -38,4 +41,13 @@ function keyPressed() {
   } else {
     wrongchars += 1;
   }
+}
+
+function getRandomWords() {
+  fetch('https://fakerjs-api.sherlockholmes.workers.dev/')
+    .then(response => response.json())
+    .then(data => {
+      inputtext = data.ten;
+    })
+    .catch((error) => console.error('Error:', error));
 }
