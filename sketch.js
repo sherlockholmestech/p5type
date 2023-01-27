@@ -3,6 +3,7 @@ let typed = '';
 let index = 0;
 let jetbrainsmono;
 let wrongchars = 0;
+let currentword = '';
 
 function preload() {
   jetbrainsmono = loadFont('assets/jetbrains.ttf');
@@ -23,20 +24,30 @@ function draw() {
   textWrap(WORD);
   textFont(jetbrainsmono);
   let inputtextw = textWidth(inputtext)
-  text(inputtext, width/2 - inputtextw/2, height/2 - 50);
+  if (inputtextw > width - 200) {
+    inputtextw = width - 100;
+  }
+  text(inputtext, width/2 - inputtextw/2, height/2 - 50, width - 100, height - (height/2 - 50));
   fill(66, 135, 245);
-  text(typed, width/2 - inputtextw/2, height/2 - 50);
+  text(typed, width/2 - inputtextw/2, height/2 - 50, width - 100, height - (height/2 - 50));
   fill(255);
   textAlign(CENTER);
-  text('Wrong Characters typed: ' + wrongchars, width/2, height/2 - 100);
+  text('Wrong Characters Typed: ' + wrongchars, width/2, height/2 - 200,);
+  text('Current Word:' + currentword, width/2, height/2 - 160);
 }
 
 function keyPressed() {
   if (key == inputtext[index]) {
     typed += key;
     index += 1;
+    if (key == ' ') {
+      currentword = '';
+    } else {
+      currentword += key;
+    }
   } else if (keyCode == 8) {
     typed = typed.substring(0, typed.length - 1);
+    currentword = currentword.substring(0, typed.length - 1);
     index -= 1;
   } else {
     wrongchars += 1;
@@ -44,13 +55,12 @@ function keyPressed() {
 }
 
 function getRandomWords() {
-  fetch('https://fakerjs-api.sherlockholmes.workers.dev/')
-    .then(response => response.json())
-    .then(data => {
-      inputtext = data.ten;
-      typed = '';
-      wrongchars = 0;
-      index = 0;
-    })
-    .catch((error) => console.error('Error:', error));
+  axios.request({method: 'GET', url: 'https://fakerjs-api.sherlockholmese.repl.co/words/100'}).then(function (response) {
+    inputtext = response.data;
+    typed = '';
+    index = 0;
+    wrongchars = 0;
+  }).catch(function (error) {
+    console.error(error);
+  });
 }
