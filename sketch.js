@@ -24,7 +24,7 @@ function setup() {
   newtextbutton.addClass('button-big');
   githubbutton = createButton('Source Code');
   githubbutton.position(windowWidth - 104, windowHeight - 30);
-  githubbutton.mousePressed(getRandomWords);
+  githubbutton.mousePressed(getsrc);
   githubbutton.addClass('button-options');
   capsbutton = createButton('Toggle Capital Letters');
   capsbutton.position(windowWidth - 419, 45);
