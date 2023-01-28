@@ -8,7 +8,7 @@ let timerrunning = false;
 let wordlength = 10;
 let startmillis;
 let endmillis;
-let secstaken;
+let secstaken = 0;
 let inputtextlength = 30;
 let wrongcharsratio;
 let wpm;
