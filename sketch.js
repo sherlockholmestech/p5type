@@ -22,6 +22,10 @@ function setup() {
   newtextbutton.position(windowWidth - 231, 19);
   newtextbutton.mousePressed(getRandomWords);
   newtextbutton.addClass('button-big');
+  githubbutton = createButton('Source Code');
+  githubbutton.position(windowWidth - 104, windowHeight - 30);
+  githubbutton.mousePressed(getRandomWords);
+  githubbutton.addClass('button-options');
   capsbutton = createButton('Toggle Capital Letters');
   capsbutton.position(windowWidth - 419, 45);
   capsbutton.mousePressed(toggleCaps);
@@ -247,6 +251,9 @@ function toggleCaps() {
   caps = !caps;
 }
 
+function getsrc() {
+  window.open('https://github.com/sherlockholmestech/p5type');
+}
 //redundant bullshit cuz p5js hates me
 
 function wordlength10() {
