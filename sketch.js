@@ -5,6 +5,7 @@ let jetbrainsmono;
 let wrongchars = 0;
 let caps = false;
 let timerrunning = false;
+let gamestarted = false;
 let wordlength = 10;
 let startmillis;
 let endmillis;
@@ -76,9 +77,12 @@ function draw() {
   fill(255);
   textAlign(CENTER);
   text('Wrong Characters Typed: ' + wrongchars + '/' + inputtextlength + ' ' + wrongcharsratio + '%', width/2, height/2 - 200);
-  text('Time: ' + secstaken, width/2, height/2 - 160);
+  text('Time: ' + round(secstaken, 2), width/2, height/2 - 160);
   if (typeof wpm !== 'undefined') {
-    text('WPM: ' + wpm, width/2, height/2);
+    text('WPM: ' + round(wpm, 2), width/2, height/2);
+  }
+  if (!gamestarted) {
+    text('Press any key to start.', width/2, height/2 - 150);
   }
   textAlign(LEFT);
   fill(0);
@@ -101,6 +105,7 @@ function draw() {
 function keyPressed() {
   if (key == inputtext[index]) {
     if (!timerrunning) {
+      gamestarted = true;
       startmillis = millis();
       timerrunning = true;
     }
@@ -142,6 +147,7 @@ function getRandomWords() {
     wpm = undefined;
     secstaken = 0;
     wrongcharsratio = 0;
+    gamestarted = false;
   }).catch(function (error) {
     console.error(error);
   });
@@ -162,6 +168,7 @@ function getRandomWords() {
     wpm = undefined;
     secstaken = 0;
     wrongcharsratio = 0;
+    gamestarted = false;
   }).catch(function (error) {
     console.error(error);
   });
@@ -182,6 +189,7 @@ function getRandomWords() {
     wpm = undefined;
     secstaken = 0;
     wrongcharsratio = 0;
+    gamestarted = false;
   }).catch(function (error) {
     console.error(error);
   });
@@ -202,6 +210,7 @@ function getRandomWords() {
     wpm = undefined;
     secstaken = 0;
     wrongcharsratio = 0;
+    gamestarted = false;
   }).catch(function (error) {
     console.error(error);
   });
@@ -222,6 +231,7 @@ function getRandomWords() {
     wpm = undefined;
     secstaken = 0;
     wrongcharsratio = 0;
+    gamestarted = false;
   }).catch(function (error) {
     console.error(error);
   });
@@ -242,6 +252,7 @@ function getRandomWords() {
     wpm = undefined;
     secstaken = 0;
     wrongcharsratio = 0;
+    gamestarted = false;
   }).catch(function (error) {
     console.error(error);
   });
