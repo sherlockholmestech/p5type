@@ -82,7 +82,7 @@ function draw() {
     text('WPM: ' + round(wpm, 2), width/2, height/2);
   }
   if (!gamestarted) {
-    text('Press any key to start.', width/2, height/2 - 150);
+    text('Press any key to start.', width/2, height - 20);
   }
   textAlign(LEFT);
   fill(0);
