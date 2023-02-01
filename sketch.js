@@ -121,7 +121,6 @@ function keyPressed() {
     }
   } else if (keyCode == 8) {
     typed = typed.substring(0, typed.length - 1);
-    currentword = currentword.substring(0, typed.length - 1);
     index -= 1;
   } else {
     wrongchars += 1;
