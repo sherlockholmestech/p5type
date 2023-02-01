@@ -75,7 +75,7 @@ function draw() {
   text(typed, width/2 - inputtextw/2, height/2 - 50, width - 100, height - (height/2 - 50));
   fill(255);
   textAlign(CENTER);
-  text('Wrong Characters Typed: ' + wrongchars + '/' + inputtextlength + ' ' + wrongcharsratio + '%', width/2, height/2 - 200,);
+  text('Wrong Characters Typed: ' + wrongchars + '/' + inputtextlength + ' ' + wrongcharsratio + '%', width/2, height/2 - 200);
   text('Time: ' + secstaken, width/2, height/2 - 160);
   if (typeof wpm !== 'undefined') {
     text('WPM: ' + wpm, width/2, height/2);
@@ -88,7 +88,7 @@ function draw() {
   strokeWeight(0);
   fill(66, 135, 245);
   textSize(24);
-  text('p5Type', 110, 50);
+  text('p5Type', 110, 52);
 
   if (timerrunning) {
     endmillis = millis();
@@ -116,12 +116,14 @@ function keyPressed() {
     }
   } else if (keyCode == 8) {
     typed = typed.substring(0, typed.length - 1);
+    currentword = currentword.substring(0, typed.length - 1);
     index -= 1;
   } else {
     wrongchars += 1;
   }
 }
 
+//API calls to get random words
 function getRandomWords() {
   if (wordlength == 10) {
     axios.request({method: 'GET', url: 'https://fakerjs-api.sherlockholmese.repl.co/words/10'}).then(function (response) {
